@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+    BrowserRouter as Router,
+    Switch
+} from 'react-router-dom';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+//Auth imports
+import UnauthedRoute from './UnauthedRoute.js';
+
+import Login from './Login.js';
+import Register from './Register.js';
+import Classes from './Classes.js';
+import Class from './Class.js';
+import Groups from './Groups.js';
+
+export default class App extends Component {
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <UnauthedRoute exact path="/login" component={Login} />
+                    <UnauthedRoute exact path="/register" component={Register} />
+                    <UnauthedRoute exact path="/classes" component={Classes} />
+                    <UnauthedRoute exact path="/class/:class_id" component={Class} />
+                    <UnauthedRoute exact path="/project/:project_id/groups" component={Groups} />
+                </Switch>
+            </Router>
+        );
+    }
 }
-
-export default App;
